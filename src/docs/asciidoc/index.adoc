@@ -1,0 +1,21 @@
+= User API Documentation
+:toc: left
+:source-highlighter: highlightjs
+:snippets: ../../target/generated-snippets
+
+== Create User
+
+=== CURL Request
+include::{snippets}/create-users/curl-request.adoc[]
+
+=== HTTP Request
+include::{snippets}/create-users/http-request.adoc[]
+
+=== HTTP Response
+include::{snippets}/create-users/http-response.adoc[]
+
+=== Request Body
+include::{snippets}/create-users/request-body.adoc[]
+
+=== Response Body
+include::{snippets}/create-users/response-body.adoc[]

@@ -5,9 +5,11 @@ import com.unitestexample.unittestdemo.entity.User;
 import com.unitestexample.unittestdemo.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.MediaType;
+import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -25,6 +27,7 @@ Use @MockBean to provide fake dependencies for the controller.
 Fast and focused on testing only the HTTP API behavior.
 */
 @Import(UserServiceTestConfig.class) // Custom config to inject mocks
+@AutoConfigureRestDocs(outputDir = "target/generated-snippets") //for rest docs
 public class UserControllerTest {
 
     @Autowired
@@ -53,7 +56,7 @@ public class UserControllerTest {
                         .content("{\"name\":\"Nikesh\"}"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name").value("Nikesh"))
-                .andExpect(jsonPath("$.id").value(1));
+                .andExpect(jsonPath("$.id").value(1)).andDo(document("create-users"));
     }
 
 /*
